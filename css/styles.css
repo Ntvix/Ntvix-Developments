@@ -1,4 +1,4 @@
-/* Reset + base */
+/* Reset and base */
 * {
   margin: 0;
   padding: 0;
@@ -25,6 +25,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .logo {
@@ -36,54 +39,106 @@ nav a {
   margin-left: 1.5rem;
   color: white;
   font-weight: 500;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  color: #ffc107;
 }
 
 .discord-btn {
   background: #5865F2;
   padding: 0.5rem 1rem;
   border-radius: 6px;
+  font-weight: 600;
 }
 
-/* Hero Section */
+/* Hero Slider */
 .hero {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(to right, #002c5f, #003d80);
-  color: white;
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: slide 15s infinite;
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,44,95,0.85) 35%, rgba(0,0,0,0.0) 75%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 5%;
+  z-index: 2;
+}
+
+.overlay h1 {
+  font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-.hero p {
-  font-size: 1.2rem;
+.overlay p {
+  font-size: 1.3rem;
+  max-width: 500px;
 }
 
-.cta {
-  display: inline-block;
+.overlay .cta {
   margin-top: 1.5rem;
-  background: #fff;
-  color: #003d80;
-  padding: 0.7rem 1.5rem;
+  background: #ffc107;
+  color: #002c5f;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   font-weight: bold;
   transition: 0.3s;
 }
 
-.cta:hover {
-  background: #eaeaea;
+.overlay .cta:hover {
+  background: #ffdd57;
 }
 
-/* Vehicles */
+/* Slide animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(0); }
+  36% { transform: translateX(-100%); }
+  66% { transform: translateX(-100%); }
+  69% { transform: translateX(-200%); }
+  99% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+/* Vehicle Section */
 .vehicles {
   padding: 3rem 2rem;
   background: #fff;
+  text-align: center;
 }
 
 .vehicles h2 {
-  text-align: center;
+  font-size: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -107,28 +162,40 @@ nav a {
 
 .vehicle-card img {
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
 }
 
 .vehicle-card h3 {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   font-size: 1.2rem;
 }
 
 .vehicle-card p {
   padding: 0 1rem 1rem 1rem;
   font-size: 0.95rem;
+  color: #555;
 }
 
 /* About + Contact */
 .about, .contact {
   padding: 3rem 2rem;
   text-align: center;
+  background: #f4f6f8;
 }
 
 .contact .cta {
   background: #003d80;
   color: white;
+  padding: 0.8rem 1.5rem;
+  margin-top: 1rem;
+  display: inline-block;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.contact .cta:hover {
+  background: #0053cc;
 }
 
 /* Footer */
@@ -137,4 +204,5 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem;
+  font-size: 0.9rem;
 }
